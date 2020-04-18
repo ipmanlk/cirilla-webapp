@@ -16,6 +16,13 @@ class ChatView extends React.Component {
         }
     }
 
+    componentDidMount = () => {
+        const chats = localStorage.getItem("chats");
+        if (chats) {
+            this.setState({ msgs: JSON.parse(chats) });
+        }
+    }
+
     typeMsg = (e) => {
         this.setState({ currentMsg: e.target.value });
         if (e.key === "Enter") {
@@ -24,13 +31,23 @@ class ChatView extends React.Component {
     }
 
     sendMsg = () => {
-        this.setState({ msgs: [...this.state.msgs, { type: "sent", msg: this.state.currentMsg }] });
+        this.addMsg();
         this.getReply();
+    }
+
+    addMsg = (msg) => {
+        this.setState({ msgs: [...this.state.msgs, { type: "sent", msg: this.state.currentMsg }] });
         this.setState({ currentMsg: "" });
+
+        // save chat
+        localStorage.setItem("chats", JSON.stringify(this.state.msgs));
     }
 
     addReply = (reply) => {
         this.setState({ msgs: [...this.state.msgs, { type: "received", msg: reply }] });
+
+        // save chat
+        localStorage.setItem("chats", JSON.stringify(this.state.msgs));
     }
 
     getReply = () => {
@@ -55,7 +72,6 @@ class ChatView extends React.Component {
                     inputPlaceHolder: "Type a message",
                 });
             });
-
     }
 
     render() {
