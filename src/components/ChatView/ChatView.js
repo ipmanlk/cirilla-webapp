@@ -1,6 +1,6 @@
 import React from "react";
 import UserBar from "../../components/UserBar/UserBar";
-import ChatControl from "../../components/ChatControl/ChatControl";
+import ChatBox from "../../components/ChatBox/ChatBox";
 import ChatList from "../../components/ChatList/ChatList";
 import getResponse from "../../api/api";
 
@@ -78,7 +78,7 @@ class ChatView extends React.Component {
                     <div className="conversation-container">
                         <ChatList chats={this.state.msgs} />
                     </div>
-                    <ChatControl sendMsg={this.sendMsg} typeMsg={this.typeMsg} currentMsg={this.state.currentMsg} readOnly={this.state.inputReadOnly} inputPlaceHolder={this.state.inputPlaceHolder} />
+                    <ChatBox sendMsg={this.sendMsg} typeMsg={this.typeMsg} currentMsg={this.state.currentMsg} readOnly={this.state.inputReadOnly} inputPlaceHolder={this.state.inputPlaceHolder} />
                 </div>
             </div>
         )

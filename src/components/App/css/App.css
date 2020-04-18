@@ -379,7 +379,6 @@ body {
 }
 
 /* Small Screens */
-
 @media (max-width: 768px) {
   .conversation {
     height: calc(100vh - 55px);

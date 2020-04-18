@@ -1,6 +1,6 @@
 import React from "react";
 
-function ChatControl(props) {
+function ChatBox(props) {
     return (
         <div className="conversation-compose">
             <div className="space">
@@ -17,4 +17,4 @@ function ChatControl(props) {
     );
 }
 
-export default ChatControl;
+export default ChatBox;
