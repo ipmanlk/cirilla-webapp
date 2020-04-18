@@ -2,7 +2,7 @@ import React from "react";
 import UserBar from "../../components/UserBar/UserBar";
 import ChatControl from "../../components/ChatControl/ChatControl";
 import ChatList from "../../components/ChatList/ChatList";
-
+import getResponse from "../../api/api";
 
 class ChatView extends React.Component {
     constructor(props) {
@@ -45,7 +45,7 @@ class ChatView extends React.Component {
 
     addReply = (reply) => {
         this.setState({ msgs: [...this.state.msgs, { type: "received", msg: reply }] });
-
+        
         // save chat
         localStorage.setItem("chats", JSON.stringify(this.state.msgs));
     }
@@ -56,22 +56,18 @@ class ChatView extends React.Component {
             botStatus: "Typing...",
             inputPlaceHolder: "Wait until she send a reply"
         });
-        fetch(`api/${this.state.currentMsg}`)
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                this.addReply(data.reply);
-            })
-            .catch(e => {
-                this.addReply("Sorry. I didn't quite understand that.");
-            }).finally(() => {
-                this.setState({
-                    inputReadOnly: false,
-                    botStatus: "Online",
-                    inputPlaceHolder: "Type a message",
-                });
+
+        getResponse(this.state.currentMsg).then(reply => {
+            this.addReply(reply);
+        }).catch(reply => {
+            this.addReply(reply);
+        }).finally(() => {
+            this.setState({
+                inputReadOnly: false,
+                botStatus: "Online",
+                inputPlaceHolder: "Type a message",
             });
+        });
     }
 
     render() {
