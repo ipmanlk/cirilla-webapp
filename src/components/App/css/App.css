@@ -26,30 +26,6 @@ body {
   justify-content: center;
 }
 
-/* Status Bar */
-.status-bar {
-  height: 25px;
-  background: #004e45;
-  color: #fff;
-  font-size: 14px;
-  padding: 0 8px;
-}
-
-.status-bar:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-.status-bar div {
-  float: right;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  margin: 0 0 0 8px;
-  font-weight: 600;
-}
-
 /* Chat */
 
 .chat {
@@ -64,7 +40,7 @@ body {
 
 .user-bar {
   height: 55px;
-  background: #005e54;
+  background: #000000;
   color: #fff;
   padding: 0 8px;
   font-size: 24px;
@@ -139,7 +115,7 @@ body {
 .conversation {
   height: calc(100% - 12px);
   position: relative;
-  background: #efe7dd url("https://cloud.githubusercontent.com/assets/398893/15136779/4e765036-1639-11e6-9201-67e728e86f39.jpg") repeat;
+  background: #efe7dd url("../img/background.jpg") repeat;
   z-index: 0;
 }
 
@@ -362,7 +338,7 @@ body {
 }
 
 .conversation-compose .send .circle {
-  background: #008a7c;
+  background: #000000;
   border-radius: 50%;
   color: #fff;
   position: relative;
