@@ -31,6 +31,7 @@ class ChatView extends React.Component {
     }
 
     sendMsg = () => {
+        if (this.state.currentMsg.trim() === "") return;
         this.addMsg();
         this.getReply();
     }
