@@ -36,7 +36,7 @@ class ChatView extends React.Component {
     }
 
     addMsg = (msg) => {
-        this.setState({ msgs: [...this.state.msgs, { type: "sent", msg: this.state.currentMsg }] });
+        this.setState({ msgs: [...this.state.msgs, { type: "sent", msg: this.state.currentMsg, time: this.getTime() }] });
         this.setState({ currentMsg: "" });
 
         // save chat
@@ -44,8 +44,8 @@ class ChatView extends React.Component {
     }
 
     addReply = (reply) => {
-        this.setState({ msgs: [...this.state.msgs, { type: "received", msg: reply }] });
-        
+        this.setState({ msgs: [...this.state.msgs, { type: "received", msg: reply, time: this.getTime() }] });
+
         // save chat
         localStorage.setItem("chats", JSON.stringify(this.state.msgs));
     }
@@ -68,6 +68,15 @@ class ChatView extends React.Component {
                 inputPlaceHolder: "Type a message",
             });
         });
+    }
+
+    getTime = () => {
+        const date = new Date();
+        let hours = date.getHours();
+        let mins = date.getMinutes();
+        hours = hours < 10 ? "0" + hours : hours;
+        mins = mins < 10 ? "0" + mins : mins;
+        return `${hours}:${mins}`;
     }
 
     render() {

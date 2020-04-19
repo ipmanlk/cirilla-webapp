@@ -16,7 +16,7 @@ class ChatList extends React.Component {
     render() {
         return (
             <div>
-                {this.props.chats.map((chat, i) => <MsgBubble key={i} type={chat.type} msg={chat.msg} />)}
+                {this.props.chats.map((chat, i) => <MsgBubble key={i} type={chat.type} msg={chat.msg} time={chat.time} />)}
 
                 <div style={{ float: "left", clear: "both" }}
                     ref={this.messagesEndRef}>
