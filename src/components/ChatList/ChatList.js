@@ -10,7 +10,7 @@ class ChatList extends React.Component {
     }
 
     scrollToBottom = () => {
-        this.messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        this.messagesEndRef.current.scrollIntoView();
     }
 
     render() {

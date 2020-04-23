@@ -36,7 +36,7 @@ class ChatView extends React.Component {
         this.getReply();
     }
 
-    addMsg = (msg) => {
+    addMsg = () => {
         this.setState({ msgs: [...this.state.msgs, { type: "sent", msg: this.state.currentMsg, time: this.getTime() }] });
         this.setState({ currentMsg: "" });
 
