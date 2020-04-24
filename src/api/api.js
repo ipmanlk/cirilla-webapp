@@ -6,13 +6,13 @@ const getResponse = (msg) => {
         sendRequest(primaryAPI, msg).then(res => {
             resolve(res);
         })
-        .catch((e) => {
-            sendRequest(fallbackAPI, msg).then(res => {
-                resolve(res);
-            }).catch(e => {
-                reject("Sorry. I didn't quite understand that.");
+            .catch((e) => {
+                sendRequest(fallbackAPI, msg).then(res => {
+                    resolve(res);
+                }).catch(e => {
+                    reject("Sorry. I didn't quite understand that.");
+                });
             });
-        });
     });
 }
 
@@ -23,7 +23,11 @@ const sendRequest = (URL, msg) => {
                 return response.json();
             })
             .then((data) => {
-                resolve(data.response);
+                if (data.error) {
+                    reject(data.error);
+                } else {
+                    resolve(data.response);
+                }
             })
             .catch(e => {
                 reject(e);
