@@ -1,18 +1,12 @@
 const getResponse = (msg) => {
-    const primaryAPI = "https://s1.navinda.xyz/ciri_bot/interact/";
-    const fallbackAPI = "https://some-random-api.ml/chatbot?message=";
+    const API = "https://s1.navinda.xyz/ciri_bot/interact/";
 
     return new Promise((resolve, reject) => {
-        sendRequest(primaryAPI, msg).then(res => {
+        sendRequest(API, msg).then(res => {
             resolve(res);
-        })
-            .catch((e) => {
-                sendRequest(fallbackAPI, msg).then(res => {
-                    resolve(res);
-                }).catch(e => {
-                    reject("Sorry. I didn't quite understand that.");
-                });
-            });
+        }).catch((e) => {
+            reject("Sorry. I didn't quite understand that.");
+        });
     });
 }
 
